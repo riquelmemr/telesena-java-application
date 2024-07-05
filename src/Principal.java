@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Principal {
     public static void main(String[] args) {
         Pessoa[] pessoas = new Pessoa[20];
@@ -11,11 +9,16 @@ public class Principal {
         ControleTelesena controle = new ControleTelesena(pessoas);
 
         for (Pessoa pessoa : pessoas) {
-            controle.venderTelesena(pessoa);
-            System.out.println(pessoa.getNome() + " comprou uma telesena.");
+            int quantidadeCompras = Gerador.gerarNumero(1, 15);
+
+            for (int i = 0; i < quantidadeCompras; i++) {
+                controle.venderTelesena(pessoa);
+            }
+
+            System.out.println(pessoa.getNome() + " comprou " + quantidadeCompras + " telesenas.");
         }
 
         System.out.println("Quantidade de telesenas vendidas: " + controle.getQuantidadeTelesenasVendidas());
-        System.out.println("Valor total das telesenas vendidas: " + controle.getValorTotal());
+        System.out.println("Valor total das telesenas vendidas: " + controle.getTotal());
     }
 }

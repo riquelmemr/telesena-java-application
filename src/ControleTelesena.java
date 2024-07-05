@@ -1,10 +1,8 @@
-import java.util.Arrays;
-
 public class ControleTelesena {
     private Pessoa[] pessoas;
     private int quantidadeTelesenasVendidas = 0;
-    private double valorTotal = 0.0;
-
+    private double total = 0.0;
+    private double premiacao = 0.0;
 
     public ControleTelesena(Pessoa[] pessoas) {
         this.pessoas = pessoas;
@@ -15,11 +13,13 @@ public class ControleTelesena {
             Telesena telesena = new Telesena();
             pessoa.adicionarTelesena(telesena);
 
-            System.out.println("Telesena comprada: " + Arrays.toString(telesena.getPrimeiroConjunto()) + " e " + Arrays.toString(telesena.getSegundoConjunto()));
-
             quantidadeTelesenasVendidas++;
-            valorTotal += telesena.getValor();
+            atualizarTotal(telesena.getValor());
         }
+    }
+
+    private void atualizarTotal(double valor) {
+        this.total += valor;
     }
 
     public Pessoa[] getPessoas() {
@@ -30,8 +30,8 @@ public class ControleTelesena {
         return quantidadeTelesenasVendidas;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
+    public double getTotal() {
+        return total;
     }
 
     public void setPessoas(Pessoa[] pessoas) {
@@ -42,7 +42,15 @@ public class ControleTelesena {
         this.quantidadeTelesenasVendidas = quantidadeTelesenasVendidas;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getPremiacao() {
+        return premiacao;
+    }
+
+    public void setPremiacao(double premiacao) {
+        this.premiacao = premiacao;
     }
 }
