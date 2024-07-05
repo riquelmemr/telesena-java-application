@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ControleTelesena {
     private Pessoa[] pessoas;
     private int quantidadeTelesenasVendidas = 0;
@@ -10,36 +12,14 @@ public class ControleTelesena {
 
     public void venderTelesena(Pessoa pessoa) {
         if (quantidadeTelesenasVendidas < 300) {
-            for (int i = 0; i < pessoa.getTelesenas().length; i++) {
-                if (pessoa.getTelesenas()[i] != null) {
-                    int[] primeiroConjunto = pessoa.getTelesenas()[i].getPrimeiroConjunto();
-                    int[] segundoConjunto = pessoa.getTelesenas()[i].getSegundoConjunto();
+            Telesena telesena = new Telesena();
+            pessoa.adicionarTelesena(telesena);
 
-                    Telesena telesena = new Telesena(gerarConjunto(primeiroConjunto), gerarConjunto(segundoConjunto));
-                    pessoa.comprarTelesena(telesena);
+            System.out.println("Telesena comprada: " + Arrays.toString(telesena.getPrimeiroConjunto()) + " e " + Arrays.toString(telesena.getSegundoConjunto()));
 
-                    quantidadeTelesenasVendidas++;
-                    valorTotal += pessoa.getTelesenas()[i].getValor();
-                }
-            }
+            quantidadeTelesenasVendidas++;
+            valorTotal += telesena.getValor();
         }
-    }
-
-    public int[] gerarConjunto(int[] conjunto) {
-        int contagem = 0;
-        boolean[] repetidos = new boolean[60];
-
-        while (contagem < 25) {
-            int numero = Gerador.gerarNumero(1, 60);
-
-            if (!repetidos[numero]) {
-                conjunto[contagem] = numero;
-                repetidos[numero] = true;
-                contagem++;
-            }
-        }
-
-        return conjunto;
     }
 
     public Pessoa[] getPessoas() {
@@ -49,7 +29,6 @@ public class ControleTelesena {
     public int getQuantidadeTelesenasVendidas() {
         return quantidadeTelesenasVendidas;
     }
-
 
     public double getValorTotal() {
         return valorTotal;
@@ -62,7 +41,6 @@ public class ControleTelesena {
     public void setQuantidadeTelesenasVendidas(int quantidadeTelesenasVendidas) {
         this.quantidadeTelesenasVendidas = quantidadeTelesenasVendidas;
     }
-
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;

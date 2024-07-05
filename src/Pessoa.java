@@ -14,7 +14,7 @@ public class Pessoa {
         this.premiacao = premiacao;
     }
 
-    public void comprarTelesena(Telesena telesena) {
+    public void adicionarTelesena(Telesena telesena) {
         for (int i = 0; i < telesenas.length; i++) {
             if (telesenas[i] == null) {
                 telesenas[i] = telesena;
